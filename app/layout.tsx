@@ -9,9 +9,9 @@ import Footer from "@/components/footer"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Personal Hub",
+  title: "Voice of Cole Hoffman",
   description: "Aggregating my online presence in one place",
-    generator: 'v0.dev'
+    generator: 'csh-eng-97'
 }
 
 export default function RootLayout({

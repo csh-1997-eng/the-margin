@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Youtube, FileText, Twitter } from "lucide-react"
-import { fetchBlogPosts, fetchYouTubeVideos, fetchTweets } from "@/lib/api"
+import { fetchBlogPosts, fetchYoutubeVideos, fetchTweets } from "@/lib/api"
 
 type FeedItem = {
   id: string
@@ -25,7 +25,7 @@ function formatRelativeTime(date: Date): string {
 
 export default async function LiveFeed() {
   // Fetch data from all sources
-  const [blogPosts, videos, tweets] = await Promise.all([fetchBlogPosts(), fetchYouTubeVideos(), fetchTweets()])
+  const [blogPosts, videos, tweets] = await Promise.all([fetchBlogPosts(), fetchYoutubeVideos(), fetchTweets()])
 
   // Combine and sort all content by date
   const allContent: FeedItem[] = [
@@ -43,13 +43,13 @@ export default async function LiveFeed() {
       date: formatRelativeTime(new Date(video.date)),
       url: video.url,
     })),
-    ...tweets.slice(0, 5).map((tweet) => ({
-      id: `x-${tweet.id}`,
-      type: "x" as const,
-      title: tweet.content.length > 50 ? tweet.content.substring(0, 50) + "..." : tweet.content,
-      date: formatRelativeTime(new Date(tweet.date)),
-      url: tweet.url,
-    })),
+    // ...tweets.slice(0, 5).map((tweet) => ({
+    //   id: `x-${tweet.id}`,
+    //   type: "x" as const,
+    //   title: tweet.content.length > 50 ? tweet.content.substring(0, 50) + "..." : tweet.content,
+    //   date: formatRelativeTime(new Date(tweet.date)),
+    //   url: tweet.url,
+    // })),
   ]
 
   // Sort by most recent (this is simplified - you'd want to parse actual dates)

@@ -1,18 +1,16 @@
-import type { Metadata } from "next"
-import RecentVideos from "@/components/recent-videos"
+// src/app/youtube/page.tsx
+import RecentVideos from "@/components/recent-videos";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "YouTube | Personal Hub",
-  description: "Watch my latest videos about web development, tech, and more.",
-}
+  description: "Watch my latest videos.",
+};
 
-export default function YoutubePage() {
+export default function YouTubePage() {
   return (
-    <div className="container py-8">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">YouTube Videos</h1>
-        <RecentVideos limit={12} />
-      </div>
-    </div>
-  )
+    <main className="container mx-auto py-8">
+      <h1 className="text-4xl font-bold mb-8">YouTube</h1>
+      <RecentVideos limit={10} />
+    </main>
+  );
 }

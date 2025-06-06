@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import XFeed from "@/components/x-feed"
+import TweetsWidget from "@/components/x-feed"
 
 export const metadata: Metadata = {
   title: "X Feed | Personal Hub",
@@ -11,7 +11,7 @@ export default function XFeedPage() {
     <div className="container py-8">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold mb-8">X Feed</h1>
-        <XFeed limit={20} />
+        <TweetsWidget />
       </div>
     </div>
   )

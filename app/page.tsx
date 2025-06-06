@@ -3,8 +3,9 @@ import LiveFeed from "@/components/live-feed"
 import ChatbotWidget from "@/components/chatbot-widget"
 import RecentBlogPosts from "@/components/recent-blog-posts"
 import RecentVideos from "@/components/recent-videos"
-import XFeed from "@/components/x-feed"
+import TweetsWidget from "@/components/x-feed"
 import ProfileSection from "@/components/profile-section"
+
 
 export default function Home() {
   return (
@@ -22,18 +23,18 @@ export default function Home() {
               <TabsTrigger value="x">X Feed</TabsTrigger>
             </TabsList>
             <TabsContent value="all" className="space-y-8">
-              <RecentBlogPosts limit={2} />
-              <RecentVideos limit={2} />
-              <XFeed limit={3} />
+              <RecentBlogPosts limit={5}  />
+              <RecentVideos limit={5} />
+              <TweetsWidget />
             </TabsContent>
             <TabsContent value="blog">
-              <RecentBlogPosts limit={6} />
+              <RecentBlogPosts limit={5} />
             </TabsContent>
             <TabsContent value="youtube">
-              <RecentVideos limit={6} />
+              <RecentVideos limit={5} />
             </TabsContent>
             <TabsContent value="x">
-              <XFeed limit={10} />
+              <TweetsWidget />
             </TabsContent>
           </Tabs>
         </div>
