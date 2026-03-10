@@ -22,24 +22,32 @@ const DEFAULT_MATCH_THRESHOLD = Number(process.env.RAG_MIN_SIMILARITY || 0.2)
 
 function getSupabaseConfig() {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL
-  const key =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_ANON_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY
-  if (!url || !key) throw new Error("Supabase is not configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.")
-  return { url, key }
+  const serverKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!url || !serverKey) {
+    throw new Error(
+      "Supabase is not configured for RAG access. Set SUPABASE_URL and SUPABASE_SECRET_KEY (or legacy SUPABASE_SERVICE_ROLE_KEY).",
+    )
+  }
+  return { url, key: serverKey }
 }
 
 async function supabaseFetch(path: string, init?: RequestInit) {
   const { url, key } = getSupabaseConfig()
+  const headers: Record<string, string> = {
+    apikey: key,
+    "Content-Type": "application/json",
+    ...(init?.headers || {}),
+  }
+
+  // Supabase secret keys are validated by the API gateway via `apikey`.
+  // Legacy JWT service_role keys still work in Authorization.
+  if (!key.startsWith("sb_")) {
+    headers.Authorization = `Bearer ${key}`
+  }
+
   const res = await fetch(`${url}/rest/v1${path}`, {
     ...init,
-    headers: {
-      apikey: key,
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-      ...(init?.headers || {}),
-    },
+    headers,
     cache: "no-store",
   })
   return res
