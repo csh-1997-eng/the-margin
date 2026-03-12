@@ -195,6 +195,7 @@ export default function ChatbotWidget() {
       <p className="mt-2 px-1 text-center text-[10px] text-[#9f968c]/60">
         Your messages may be used by OpenAI to improve their models.
       </p>
+      </form>
     </div>
   )
 }
