@@ -8,6 +8,7 @@ type ChatRequest = {
 }
 
 const OPENAI_MODEL = process.env.OPENAI_CHAT_MODEL || "gpt-5-mini"
+const OPENAI_MAX_COMPLETION_TOKENS = Number(process.env.OPENAI_MAX_COMPLETION_TOKENS || 900)
 const RAG_MATCH_COUNT = Number(process.env.RAG_MATCH_COUNT || 6)
 const RAG_MIN_SIMILARITY = Number(process.env.RAG_MIN_SIMILARITY || 0)
 
@@ -37,7 +38,7 @@ async function generateWithOpenAI(message: string, contextChunks: RagChunk[]) {
 
   const completion = await client.chat.completions.create({
     model: OPENAI_MODEL,
-    max_tokens: 900,
+    max_completion_tokens: OPENAI_MAX_COMPLETION_TOKENS,
     messages: [
       { role: "system", content: system },
       { role: "user", content: userPrompt },
@@ -59,10 +60,16 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Message is required." }, { status: 400 })
     }
 
-    const ragChunks = await retrieveRagChunks(message, {
-      matchCount: RAG_MATCH_COUNT,
-      threshold: RAG_MIN_SIMILARITY,
-    })
+    let ragChunks: RagChunk[]
+    try {
+      ragChunks = await retrieveRagChunks(message, {
+        matchCount: RAG_MATCH_COUNT,
+        threshold: RAG_MIN_SIMILARITY,
+      })
+    } catch (ragErr) {
+      console.error("/api/chat RAG error:", ragErr)
+      ragChunks = []
+    }
     const reply = await generateWithOpenAI(message, ragChunks)
 
     return NextResponse.json({
