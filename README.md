@@ -1,32 +1,7 @@
-# Personal website aggregator
+# Voice of Cole
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+This is my personal site.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/csh1997engs-projects/v0-personal-website-aggregator)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/XuE55itYaQL)
+It is a place for people to get a real sense of how I think, what I am building, and what I care about. The site pulls together my writing, videos, code, and a chat interface so someone can move from skimming my work to actually interacting with it.
 
-## Overview
-
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
-
-## Deployment
-
-Your project is live at:
-
-**[https://vercel.com/csh1997engs-projects/v0-personal-website-aggregator](https://vercel.com/csh1997engs-projects/v0-personal-website-aggregator)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.dev/chat/projects/XuE55itYaQL](https://v0.dev/chat/projects/XuE55itYaQL)**
-
-## How It Works
-
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
-
-
+The goal is pretty simple: make it easy for someone to understand my taste, my technical ability, and the kinds of problems I like solving.
