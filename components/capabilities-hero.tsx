@@ -34,31 +34,34 @@ export default function CapabilitiesHero() {
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.24)_0%,rgba(10,10,10,0.56)_58%,rgba(10,10,10,0.88)_100%)]" />
 
             <div className="relative px-6 py-8 md:px-10 md:py-12">
+              <p className="text-xs uppercase tracking-[0.24em] text-[#C45A3C]">Founder-Led Media Company</p>
               <h1 className="font-display mt-6 max-w-4xl text-5xl leading-[0.9] text-[#E8E5E0] md:text-7xl">
-                Stategy, Systems, Execution
+                The Margin
               </h1>
+              <p className="mt-4 max-w-2xl text-sm text-[#d2ccc3] md:text-base">
+                A publication about strategy, systems, and execution. Essays, video, live commentary, and a
+                conversational layer for following the ideas behind the work.
+              </p>
               <div className="mt-8 flex flex-wrap gap-6">
                 <Link
-                  href={siteConfig.links.cal}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={siteConfig.routes.writing}
                   className="group relative inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#C45A3C] transition-colors hover:text-[#E8E5E0]"
                 >
-                  <span className="nav-shutter nav-glitch-word" data-text="Book a Meeting">Book a Meeting</span>
+                  <span className="nav-shutter nav-glitch-word" data-text="Read The Writing">Read The Writing</span>
                   <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-[#C45A3C] transition-all duration-300 group-hover:w-full" />
                 </Link>
                 <Link
-                  href="/blog"
+                  href={siteConfig.routes.video}
                   className="group relative inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#d2ccc3] transition-colors hover:text-[#E8E5E0]"
                 >
-                  <span className="nav-shutter nav-glitch-word" data-text="Explore Substack">Explore Substack</span>
+                  <span className="nav-shutter nav-glitch-word" data-text="Watch The Channel">Watch The Channel</span>
                   <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-[#C45A3C] transition-all duration-300 group-hover:w-full" />
                 </Link>
                 <Link
-                  href="/youtube"
+                  href={siteConfig.routes.feed}
                   className="group relative inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#d2ccc3] transition-colors hover:text-[#E8E5E0]"
                 >
-                  <span className="nav-shutter nav-glitch-word" data-text="Watch Videos">Watch Videos</span>
+                  <span className="nav-shutter nav-glitch-word" data-text="Open The Feed">Open The Feed</span>
                   <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-[#C45A3C] transition-all duration-300 group-hover:w-full" />
                 </Link>
               </div>

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Heart, Repeat2, MessageCircle, ExternalLink } from "lucide-react"
 import type { Tweet } from "@/lib/data-types"
+import { siteConfig } from "@/lib/site"
 
 export default async function TweetsWidget() {
   // Feed temporarily paused — re-enable by restoring the fetchTweetsResult() call below
@@ -8,19 +9,18 @@ export default async function TweetsWidget() {
   const tweets: Tweet[] = []
 
   if (tweets.length === 0) {
-    const handle = process.env.NEXT_PUBLIC_TWITTER_HANDLE || "lordcolton_exe"
     return (
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         <article className="relative z-30 rounded-2xl border border-[#E8E5E0]/16 bg-[#0B0B0B] p-5 text-[#d2ccc3] md:col-span-2 xl:col-span-2">
-          <p className="text-xs uppercase tracking-[0.16em] text-[#C45A3C]">Coming Soon</p>
-          <p className="mt-2 text-sm">Live X feed is on its way.</p>
+          <p className="text-xs uppercase tracking-[0.16em] text-[#C45A3C]">Feed Standby</p>
+          <p className="mt-2 text-sm">Live commentary will land here as The Margin feed publishing comes online.</p>
           <Link
-            href={`https://x.com/${handle}`}
+            href={siteConfig.links.x}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-[#C45A3C] hover:underline"
           >
-            View profile on X <ExternalLink className="h-3.5 w-3.5" />
+            Open the feed on X <ExternalLink className="h-3.5 w-3.5" />
           </Link>
         </article>
         {[1, 2, 3, 4].map((slot) => (

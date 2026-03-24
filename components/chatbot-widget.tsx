@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react"
 
-const CONSENT_KEY = "voice_of_cole_consented_v1"
+const CONSENT_KEY = "the_margin_consented_v1"
 
 type ChatMessage = {
   id: string
@@ -19,8 +19,8 @@ function ConsentModal({ onAccept, onDecline }: { onAccept: () => void; onDecline
         <p className="mb-1 text-xs uppercase tracking-[0.18em] text-[#C45A3C]">Before you chat</p>
         <h2 className="mb-3 font-serif text-lg text-[#E8E5E0]">Data Notice</h2>
         <p className="mb-5 text-sm leading-relaxed text-[#bfb7ad]">
-          This chat is powered by OpenAI. Your messages may be used by OpenAI to improve their models. Do not share
-          sensitive or confidential information.
+          This chat is powered by OpenAI. Treat it like a public-facing AI interface and do not share sensitive or
+          confidential information.
         </p>
         <label className="mb-5 flex cursor-pointer items-start gap-3">
           <input
@@ -30,7 +30,7 @@ function ConsentModal({ onAccept, onDecline }: { onAccept: () => void; onDecline
             className="mt-0.5 h-4 w-4 accent-[#C45A3C]"
           />
           <span className="text-sm text-[#E8E5E0]">
-            I understand my messages may be used by OpenAI to train their models.
+            I understand this is an AI system and I will not share sensitive or confidential information.
           </span>
         </label>
         <div className="flex gap-3">
@@ -59,7 +59,7 @@ export default function ChatbotWidget() {
     {
       id: "seed-1",
       role: "assistant",
-      text: "I am Voice of Cole. Ask me about projects, writing, strategy, or what I am building next.",
+      text: "I am The Margin's editorial assistant. Ask about strategy, systems, execution, current coverage, or the ideas behind the work.",
     },
   ])
   const [input, setInput] = useState("")
@@ -121,7 +121,7 @@ export default function ChatbotWidget() {
       if (!res.ok || !data.reply) throw new Error(data.error || "Unable to process chat request.")
       if (data.threadId) setThreadId(data.threadId)
       setMessages((prev) => [...prev, { id: `a-${Date.now()}`, role: "assistant", text: data.reply as string }])
-    } catch (error) {
+    } catch {
       setMessages((prev) => [...prev, { id: `a-${Date.now()}`, role: "assistant", text: "Service unavailable at this time." }])
     } finally {
       setSending(false)
@@ -137,7 +137,7 @@ export default function ChatbotWidget() {
     <div className="relative flex h-[68vh] min-h-[560px] flex-col rounded-2xl border border-[#E8E5E0]/16 bg-[#0B0B0B]/92">
       {showConsent && <ConsentModal onAccept={handleConsent} onDecline={handleDecline} />}
       <div className="flex items-center justify-between border-b border-[#E8E5E0]/12 px-4 py-3 md:px-5">
-        <p className="text-xs uppercase tracking-[0.18em] text-[#C45A3C]">Live Session</p>
+        <p className="text-xs uppercase tracking-[0.18em] text-[#C45A3C]">Editorial Session</p>
         <p className="text-xs text-[#bfb7ad]">{sending ? "Thinking..." : "Ready"}</p>
       </div>
 
@@ -177,7 +177,7 @@ export default function ChatbotWidget() {
                 tryToSend(input)
               }
             }}
-            placeholder="Ask Voice of Cole anything..."
+            placeholder="Ask The Margin about strategy, systems, media, or current coverage..."
             rows={4}
             className="w-full resize-none bg-transparent px-3 py-2 text-sm text-[#E8E5E0] outline-none placeholder:text-[#9f968c]"
           />
@@ -192,172 +192,10 @@ export default function ChatbotWidget() {
             </button>
           </div>
         </div>
-      <p className="mt-2 px-1 text-center text-[10px] text-[#9f968c]/60">
-        Your messages may be used by OpenAI to improve their models.
-      </p>
+        <p className="mt-2 px-1 text-center text-[10px] text-[#9f968c]/60">
+          Avoid sharing sensitive or confidential information in this chat.
+        </p>
       </form>
     </div>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// "use client";
-
-// import { useState, useRef, useEffect, type FormEvent } from "react";
-// import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
-// import { Avatar } from "@/components/ui/avatar";
-// import { SendIcon, Bot, User } from "lucide-react";
-
-// type UiMsg = {
-//   id: string;
-//   content: string;
-//   sender: "user" | "bot";
-//   timestamp: Date;
-// };
-
-// export default function ChatbotWidget() {
-//   const [messages, setMessages] = useState<UiMsg[]>([
-//     {
-//       id: "1",
-//       content: "Hi there! I'm your personal assistant. Ask me anything about John's content, resume, or projects!",
-//       sender: "bot",
-//       timestamp: new Date(),
-//     },
-//   ]);
-
-//   const [input, setInput] = useState("");
-//   const [isLoading, setIsLoading] = useState(false);
-//   const bottomRef = useRef<HTMLDivElement>(null);
-
-//   useEffect(() => bottomRef.current?.scrollIntoView({ behavior: "smooth" }), [messages]);
-
-//   /** Converts UI messages → OpenAI role messages */
-//   const toOpenAiFormat = (msgs: UiMsg[]) =>
-//     msgs.map(({ sender, content }) => ({
-//       role: sender === "user" ? "user" : "assistant",
-//       content,
-//     }));
-
-//   const handleSendMessage = async (e: FormEvent) => {
-//     e.preventDefault();
-//     if (!input.trim()) return;
-
-//     const userMsg: UiMsg = {
-//       id: Date.now().toString(),
-//       content: input,
-//       sender: "user",
-//       timestamp: new Date(),
-//     };
-//     setMessages((prev) => [...prev, userMsg]);
-//     setInput("");
-//     setIsLoading(true);
-
-//     try {
-//       const res = await fetch("/api/chat", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({ thread: toOpenAiFormat([...messages, userMsg]) }),
-//       });
-
-//       const data = (await res.json()) as { content?: string; error?: string };
-//       const botMsg: UiMsg = {
-//         id: Date.now().toString() + "-bot",
-//         content: data.content ?? data.error ?? "Sorry, something went wrong.",
-//         sender: "bot",
-//         timestamp: new Date(),
-//       };
-//       setMessages((prev) => [...prev, botMsg]);
-//     } catch (err) {
-//       setMessages((prev) => [
-//         ...prev,
-//         {
-//           id: Date.now().toString() + "-bot",
-//           content: "Network error – please try again.",
-//           sender: "bot",
-//           timestamp: new Date(),
-//         },
-//       ]);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-
-//   return (
-//     <Card className="h-[400px] flex flex-col">
-//       <CardHeader>
-//         <CardTitle className="text-xl">Chat with Me</CardTitle>
-//       </CardHeader>
-
-//       <CardContent className="flex-1 overflow-y-auto">
-//         <div className="space-y-4">
-//           {messages.map((m) => (
-//             <div key={m.id} className={`flex ${m.sender === "user" ? "justify-end" : "justify-start"}`}>
-//               <div className={`flex gap-2 max-w-[80%] ${m.sender === "user" ? "flex-row-reverse" : "flex-row"}`}>
-//                 <Avatar className={`h-8 w-8 ${m.sender === "user" ? "bg-primary" : "bg-muted"}`}>
-//                   {m.sender === "user" ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
-//                 </Avatar>
-//                 <div
-//                   className={`rounded-lg px-3 py-2 text-sm ${
-//                     m.sender === "user" ? "bg-primary text-primary-foreground" : "bg-muted"
-//                   }`}
-//                 >
-//                   {m.content}
-//                 </div>
-//               </div>
-//             </div>
-//           ))}
-
-//           {isLoading && (
-//             <div className="flex justify-start">
-//               <div className="flex gap-2 max-w-[80%]">
-//                 <Avatar className="h-8 w-8 bg-muted">
-//                   <Bot className="h-4 w-4" />
-//                 </Avatar>
-//                 <div className="rounded-lg px-3 py-2 text-sm bg-muted">
-//                   <span className="flex gap-1">
-//                     <span className="animate-bounce">.</span>
-//                     <span className="animate-bounce delay-100">.</span>
-//                     <span className="animate-bounce delay-200">.</span>
-//                   </span>
-//                 </div>
-//               </div>
-//             </div>
-//           )}
-
-//           <div ref={bottomRef} />
-//         </div>
-//       </CardContent>
-
-//       <CardFooter>
-//         <form onSubmit={handleSendMessage} className="flex w-full gap-2">
-//           <Input
-//             placeholder="Ask me anything..."
-//             value={input}
-//             onChange={(e) => {
-//                           console.log("value →", e.target.value);   // should print each keystroke
-//                           setInput(e.target.value);
-//                         }}
-//             disabled={isLoading}
-//             className="flex-1"
-//           />
-//           <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
-//             <SendIcon className="h-4 w-4" />
-//             <span className="sr-only">Send message</span>
-//           </Button>
-//         </form>
-//       </CardFooter>
-//     </Card>
-//   );
-// }

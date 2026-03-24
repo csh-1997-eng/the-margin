@@ -28,10 +28,12 @@ async function generateWithOpenAI(message: string, contextChunks: RagChunk[]) {
 
   const contextPrompt = buildContextPrompt(contextChunks)
   const system = [
-    "You are Voice of Cole's assistant.",
+    "You are The Margin's editorial assistant.",
+    "The Margin is a founder-led media brand covering strategy, systems, and execution.",
     "Use the retrieved context first when relevant.",
     "If context is insufficient, say that clearly and answer from general knowledge cautiously.",
     "Be concise, concrete, and useful.",
+    "Write with crisp editorial confidence and do not invent facts.",
   ].join(" ")
 
   const userPrompt = [`User question:\n${message}`, "Retrieved context:", contextPrompt].join("\n\n")

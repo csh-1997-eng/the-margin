@@ -1,7 +1,5 @@
-# Voice of Cole
+# The Margin
 
-This is my personal site.
+This is the web property for The Margin.
 
-It is a place for people to get a real sense of how I think, what I am building, and what I care about. The site pulls together my writing, videos, code, and a chat interface so someone can move from skimming my work to actually interacting with it.
-
-The goal is pretty simple: make it easy for someone to understand my taste, my technical ability, and the kinds of problems I like solving.
+It is a founder-led media site that brings together writing, video, live commentary, and a conversational interface around strategy, systems, and execution.
