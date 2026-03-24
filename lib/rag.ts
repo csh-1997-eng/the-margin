@@ -25,16 +25,14 @@ const DEFAULT_MATCH_THRESHOLD = Number(process.env.RAG_MIN_SIMILARITY || 0.2)
 async function supabaseFetch(path: string, init?: RequestInit) {
   const config = getServerSupabaseConfig()
   const { url, key } = config
-  const headers: Record<string, string> = {
-    apikey: key,
-    "Content-Type": "application/json",
-    ...(init?.headers || {}),
-  }
+  const headers = new Headers(init?.headers)
+  headers.set("apikey", key)
+  headers.set("Content-Type", "application/json")
 
   // Supabase secret keys are validated by the API gateway via `apikey`.
   // Legacy JWT service_role keys still work in Authorization.
   if (!key.startsWith("sb_")) {
-    headers.Authorization = `Bearer ${key}`
+    headers.set("Authorization", `Bearer ${key}`)
   }
 
   try {

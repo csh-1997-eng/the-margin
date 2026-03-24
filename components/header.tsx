@@ -5,59 +5,32 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { siteConfig } from "@/lib/site"
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Substack", href: "/blog" },
-  { name: "Work", href: "/resume" },
-  { name: "YouTube", href: "/youtube" },
-  { name: "GitHub", href: "/github" },
+  { name: "Writing", href: siteConfig.routes.writing },
+  { name: "Video", href: siteConfig.routes.video },
+  { name: "Feed", href: siteConfig.routes.feed },
 ]
 
 export default function Header() {
   const pathname = usePathname()
-  const isRecruiterSafeRoute = pathname === "/recruiter"
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
-  const lastY = useRef(0)
 
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY
       setScrolled(y > 36)
       setHidden(y > 80)
-      lastY.current = y
     }
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
-
-  if (isRecruiterSafeRoute) {
-    return (
-      <header className="border-b border-[#E8E5E0]/10 bg-[#0A0A0A]">
-        <div className="container flex items-center justify-between gap-4 py-4">
-          <Link href="/" className="text-sm font-medium tracking-[0.08em] text-[#E8E5E0]">
-            Cole Hoffman
-          </Link>
-          <nav className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.14em] text-[#d2ccc3]">
-            <Link href="/resume" className="hover:text-[#C45A3C]">
-              Work
-            </Link>
-            <Link href="/blog" className="hover:text-[#C45A3C]">
-              Blog
-            </Link>
-            <a href="/content/resume_fde_se_csh.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-[#C45A3C]">
-              PDF Resume
-            </a>
-          </nav>
-        </div>
-      </header>
-    )
-  }
 
   return (
     <header
@@ -74,16 +47,16 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <Link href="/" className="flex items-center gap-2.5">
               <Image
-                src="/branding/masthead_logo_transparent.png"
-                alt="CH monogram"
+                src="/branding/margin_logo_transparent.png"
+                alt="The Margin wordmark"
                 width={760}
-                height={508}
-                className="h-16 w-auto shrink-0"
+                height={760}
+                className="h-14 w-auto shrink-0"
                 priority
               />
               <div className="flex flex-col leading-[0.85]">
-                <span className="font-display text-xl tracking-[0.16em] text-[#E8E5E0] md:text-2xl">COLE</span>
-                <span className="font-display text-xl tracking-[0.16em] text-[#E8E5E0] md:text-2xl">HOFFMAN</span>
+                <span className="font-display text-xl tracking-[0.18em] text-[#E8E5E0] md:text-2xl">THE</span>
+                <span className="font-display text-xl tracking-[0.18em] text-[#E8E5E0] md:text-2xl">MARGIN</span>
               </div>
             </Link>
           </div>
@@ -112,13 +85,11 @@ export default function Header() {
               )
             })}
             <Link
-              href={siteConfig.links.cal}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={siteConfig.routes.writing}
               className="group relative inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#C45A3C] transition-colors hover:text-[#E8E5E0]"
             >
-              <span className="nav-shutter nav-glitch-word" data-text="Book Meeting">
-                Book Meeting
+              <span className="nav-shutter nav-glitch-word" data-text="Explore">
+                Explore
               </span>
               <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-[#C45A3C] transition-all duration-300 group-hover:w-full" />
             </Link>
@@ -157,12 +128,10 @@ export default function Header() {
                 </Link>
               ))}
               <Link
-                href={siteConfig.links.cal}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={siteConfig.routes.writing}
                 className="block text-xs uppercase tracking-[0.18em] text-[#C45A3C] transition-colors hover:text-[#E8E5E0]"
               >
-                Book Meeting
+                Explore
               </Link>
             </div>
           </div>

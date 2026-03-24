@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
         apikey: config.key,
         Authorization: `Bearer ${config.key}`,
       },
-      body: JSON.stringify({ ip_address: ip, user_agent: userAgent, consent_version: "v1", consented: true }),
+      body: JSON.stringify({ ip_address: ip, user_agent: userAgent, consent_version: "the_margin_v1", consented: true }),
     })
 
     if (!res.ok) return NextResponse.json({ error: "Failed to log consent" }, { status: 500 })

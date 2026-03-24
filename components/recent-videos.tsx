@@ -17,17 +17,17 @@ export default async function RecentVideos({ limit = 5 }: RecentVideosProps) {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-display text-4xl leading-none">Latest YouTube Content</h2>
+        <h2 className="font-display text-4xl leading-none">Latest Video</h2>
         <Link
           href="/youtube"
           className="text-sm text-[#C45A3C] hover:underline"
         >
-          View all videos
+          Open channel
         </Link>
       </div>
 
       {videos.length === 0 ? (
-        <p className="italic text-muted-foreground">No videos available yet.</p>
+        <p className="italic text-muted-foreground">No video available yet.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {videos.map((video) => (

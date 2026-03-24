@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     revalidateTag("blog-posts")
 
     return NextResponse.json({
-      message: "Substack content refreshed",
+      message: "Writing content refreshed",
       timestamp: new Date().toISOString(),
     })
   } catch (error) {

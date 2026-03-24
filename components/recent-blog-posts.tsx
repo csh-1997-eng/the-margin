@@ -20,18 +20,18 @@ export default async function RecentBlogPosts({
     <div>
       {/* ---------- section header ---------- */}
       <div className="flex items-center justify-between mb-4">
-        <h2 className="font-display text-4xl leading-none">Recent Substack Content</h2>
+        <h2 className="font-display text-4xl leading-none">Latest Writing</h2>
         <Link
           href="/blog"
           className="text-sm text-[#C45A3C] hover:underline"
         >
-          View all posts
+          Open archive
         </Link>
       </div>
 
       {/* ---------- empty state ---------- */}
       {posts.length === 0 ? (
-        <p className="italic text-muted-foreground">No posts available yet.</p>
+        <p className="italic text-muted-foreground">No writing available yet.</p>
       ) : (
         /* ---------- rich card grid ---------- */
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

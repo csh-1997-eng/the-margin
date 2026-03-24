@@ -71,8 +71,7 @@ async function xFetch(path: string, token: string) {
 export async function getLatestTweets(limit = 12): Promise<Tweet[]> {
   try {
     const rawBearer = process.env.TWITTER_BEARER_TOKEN
-    const rawHandle =
-      process.env.TWITTER_USERNAME || process.env.NEXT_PUBLIC_TWITTER_HANDLE || "lordcolton_exe"
+    const rawHandle = process.env.TWITTER_USERNAME || process.env.NEXT_PUBLIC_TWITTER_HANDLE || ""
     const handle = normalizeHandle(rawHandle)
 
     if (!rawBearer || !handle) {

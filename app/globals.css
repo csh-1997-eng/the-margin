@@ -189,6 +189,8 @@
 
 @layer base {
   :root {
+    --font-display: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --font-body: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
     --background: 0 0% 4%;
     --foreground: 37 17% 89%;
     --card: 0 0% 7%;

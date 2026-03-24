@@ -1,6 +1,5 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header"
@@ -8,21 +7,38 @@ import Footer from "@/components/footer"
 import { siteConfig } from "@/lib/site"
 import { Analytics } from "@vercel/analytics/next"
 
-const display = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["700", "800"],
-})
+function getMetadataBase() {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.trim()
+  if (!baseUrl) return undefined
 
-const body = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-})
+  try {
+    return new URL(baseUrl)
+  } catch {
+    return undefined
+  }
+}
 
 export const metadata: Metadata = {
+  metadataBase: getMetadataBase(),
   title: siteConfig.name,
   description: siteConfig.description,
-  generator: "csh-eng-97",
+  generator: siteConfig.generator,
+  icons: {
+    icon: siteConfig.ogImage,
+    shortcut: siteConfig.ogImage,
+    apple: siteConfig.ogImage,
+  },
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+  },
 }
 
 export default function RootLayout({
@@ -32,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${display.variable} ${body.variable} font-body`}>
+      <body className="font-body">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <div className="flex min-h-screen flex-col">
             <Header />

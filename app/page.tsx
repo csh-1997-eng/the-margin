@@ -5,7 +5,7 @@ import TweetsWidget from "@/components/x-feed"
 import NeuralNetworkBackground from "@/components/neural-network-background"
 import CapabilitiesHero from "@/components/capabilities-hero"
 import FoldSection from "@/components/fold-section"
-import GitHubView from "@/components/github-view"
+import EditorialProof from "@/components/editorial-proof"
 import ProfileSection from "@/components/profile-section"
 
 export default function Home() {
@@ -21,9 +21,10 @@ export default function Home() {
               <div className="chat-materialize panel rounded-3xl px-6 py-8 md:px-8 md:py-10">
                 <div>
                   <p className="text-xs uppercase tracking-[0.24em] text-[#C45A3C]">01</p>
-                  <h2 className="font-display mt-2 text-5xl leading-none md:text-6xl">Voice of Cole</h2>
+                  <h2 className="font-display mt-2 text-5xl leading-none md:text-6xl">Ask The Margin</h2>
                   <p className="mt-4 max-w-xl text-sm text-[#d2ccc3]">
-                    A quiet interface for high-signal dialogue across strategy, systems, and current work.
+                    A conversational layer for strategy, systems, editorial themes, and the ideas behind current
+                    coverage.
                   </p>
                 </div>
                 <div className="mt-6">
@@ -39,7 +40,7 @@ export default function Home() {
             <div>
               <div className="mb-5">
                 <p className="text-xs uppercase tracking-[0.24em] text-[#C45A3C]">02</p>
-                <h2 className="font-display mt-2 text-5xl leading-none md:text-6xl">X Posts</h2>
+                <h2 className="font-display mt-2 text-5xl leading-none md:text-6xl">Feed</h2>
               </div>
               <div className="relative z-30 isolate rounded-2xl border border-[#E8E5E0]/18 bg-[#0B0B0B] p-4 shadow-[0_18px_44px_rgba(0,0,0,0.42)] md:p-6">
                 <TweetsWidget />
@@ -68,7 +69,7 @@ export default function Home() {
 
         <section className="stack-overlap container py-16 md:py-20">
           <FoldSection index={5} preset="aggressive" className="fold-cascade">
-            <GitHubView />
+            <EditorialProof />
           </FoldSection>
         </section>
 
@@ -77,7 +78,7 @@ export default function Home() {
             <div>
               <div className="mb-5">
                 <p className="text-xs uppercase tracking-[0.24em] text-[#C45A3C]">06</p>
-                <h2 className="font-display mt-2 text-5xl leading-none md:text-6xl">About Me</h2>
+                <h2 className="font-display mt-2 text-5xl leading-none md:text-6xl">About The Margin</h2>
               </div>
               <ProfileSection />
             </div>
