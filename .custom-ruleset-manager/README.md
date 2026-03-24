@@ -102,10 +102,6 @@ Yeah, definitely. The scripts here won't work for you (private template repo), b
 
 The hard part isn't the tooling, it's actually documenting how you work, but that in of itself is a great excercise.
 
-If you're curious about the specifics or want to build something similar, feel free to reach out. Always happy to talk about this stuff.
-
-cole.hoffman@protonmail.com 
-or 
-lodcolton_exe on X.com -> https://x.com/lordcolton_exe
+If you're curious about the specifics or want to build something similar, use your own preferred contact information here before sharing this file.
 
 ---

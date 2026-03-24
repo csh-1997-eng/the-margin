@@ -1,4 +1,4 @@
-# AI RULES — Project: Cole Hoffman Personal Website (aka The Margin)
+# AI RULES — Project: The Margin
 Stack: next.js + anthropic + supabase
 
 This file contains project-specific configurations and commands.
@@ -13,7 +13,8 @@ This file contains project-specific configurations and commands.
 
 ## Project Configuration
 
-**Project Name:** Cole Hoffman
+**Project Name:** The Margin
+**Positioning:** Founder-led media company
 **Stack:** next.js + anthropic + supabase
 
 ---
@@ -27,7 +28,7 @@ pnpm format
 pnpm lint
 
 ### Typecheck
-pnpm build
+pnpm exec tsc --noEmit
 
 ### Tests
 pnpm dev
@@ -39,7 +40,7 @@ pnpm build
 
 ## About This File
 
-This file defines project-specific commands and configurations for AI coding assistants.
+This file defines project-specific commands and configurations for AI coding assistants working in The Margin codebase.
 
 The full ruleset (coding style, workflow patterns, security guidelines) is managed via a private template system and synced locally. These files are not committed to public repositories to protect proprietary development workflows.
 

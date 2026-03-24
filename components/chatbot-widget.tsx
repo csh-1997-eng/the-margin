@@ -59,7 +59,7 @@ export default function ChatbotWidget() {
     {
       id: "seed-1",
       role: "assistant",
-      text: "I am The Margin's editorial assistant. Ask about strategy, systems, execution, current coverage, or the ideas behind the work.",
+      text: "This is The Margin — where the interesting thinking happens. Ask about strategy, systems, or the ideas behind the work.",
     },
   ])
   const [input, setInput] = useState("")
@@ -137,7 +137,7 @@ export default function ChatbotWidget() {
     <div className="relative flex h-[68vh] min-h-[560px] flex-col rounded-2xl border border-[#E8E5E0]/16 bg-[#0B0B0B]/92">
       {showConsent && <ConsentModal onAccept={handleConsent} onDecline={handleDecline} />}
       <div className="flex items-center justify-between border-b border-[#E8E5E0]/12 px-4 py-3 md:px-5">
-        <p className="text-xs uppercase tracking-[0.18em] text-[#C45A3C]">Editorial Session</p>
+        <p className="text-xs text-[#C45A3C] md:text-sm">Where the real notes are.</p>
         <p className="text-xs text-[#bfb7ad]">{sending ? "Thinking..." : "Ready"}</p>
       </div>
 
@@ -177,7 +177,7 @@ export default function ChatbotWidget() {
                 tryToSend(input)
               }
             }}
-            placeholder="Ask The Margin about strategy, systems, media, or current coverage..."
+            placeholder="What's in your margin?"
             rows={4}
             className="w-full resize-none bg-transparent px-3 py-2 text-sm text-[#E8E5E0] outline-none placeholder:text-[#9f968c]"
           />

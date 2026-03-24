@@ -1,10 +1,7 @@
 import { unstable_cache } from "next/cache"
-import { Post, Video, Tweet } from "@/lib/data-types"
+import { Post, Video } from "@/lib/data-types"
 import { parseSubstackFeed } from "@/lib/blog"
 import { getLatestVideos } from "@/lib/youtube"
-import { getLatestTweets } from "@/lib/x"
-type TweetsFetchResult = { tweets: Tweet[]; error: string | null }
-
 const getCachedBlogPosts = unstable_cache(
   async () => parseSubstackFeed(25),
   ["blog-posts-cache"],
@@ -27,17 +24,3 @@ export async function fetchYoutubeVideos(limit = 25): Promise<Video[]> {
   return videos.slice(0, limit)
 }
 
-export async function fetchTweets(): Promise<Tweet[]> {
-  return (await fetchTweetsResult()).tweets
-}
-
-export async function fetchTweetsResult(): Promise<TweetsFetchResult> {
-  try {
-    // Avoid caching empty/error states for X; this keeps feed recovery immediate after env/token fixes.
-    const tweets = await getLatestTweets(25)
-    return { tweets, error: null }
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error)
-    return { tweets: [], error: message }
-  }
-}
