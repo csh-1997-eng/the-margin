@@ -1,6 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card"
-import Link from "next/link"
 import { siteConfig } from "@/lib/site"
+
+const focusAreas = [
+  "how systems actually behave under pressure",
+  "how incentives shape decisions",
+  "and how non-obvious ideas turn into real outcomes",
+]
 
 export default function ProfileSection() {
   return (
@@ -12,7 +17,7 @@ export default function ProfileSection() {
       />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/62 via-[#0A0A0A]/72 to-[#0A0A0A]/86" aria-hidden="true" />
       <CardContent className="relative z-10 p-6">
-        <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
+        <div className="flex flex-col gap-6 md:flex-row md:items-start">
           <div className="relative h-32 w-32 overflow-hidden rounded-full border border-[#E8E5E0]/20">
             <img
               src="/media/headshot.JPG"
@@ -22,42 +27,30 @@ export default function ProfileSection() {
           </div>
           <div className="flex-1 text-center md:text-left">
             <p className="text-xs uppercase tracking-[0.2em] text-[#C45A3C]">Founder Note</p>
-            <h3 className="font-display mt-2 text-4xl mb-2">{siteConfig.name}</h3>
-            <p className="text-[#d2ccc3] mb-4">
-              {siteConfig.founderName} · {siteConfig.founderRole}
-            </p>
-            <p className="mb-4 max-w-2xl text-[#d2ccc3]">
-              The Margin exists to follow ideas where they get sharpest: strategy under pressure, systems that scale,
-              and execution when taste finally meets reality. It is a media company in the making, built to publish,
-              test, and refine a long-term editorial point of view.
-            </p>
-            <p className="mb-4 max-w-2xl text-[#d2ccc3]">
-              Cole Hoffman founded The Margin as a home for essays, video, live commentary, and conversation around
-              the work itself, not just the outputs. The goal is a publication with a clear voice and a durable edge.
-            </p>
-            <div className="flex flex-wrap gap-6 justify-center md:justify-start">
-              <Link
-                href={siteConfig.routes.writing}
-                className="group relative inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#C45A3C] transition-colors hover:text-[#E8E5E0]"
-              >
-                <span className="nav-shutter nav-glitch-word" data-text="Read Writing">Read Writing</span>
-                <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-[#C45A3C] transition-all duration-300 group-hover:w-full" />
-              </Link>
-              <Link
-                href={siteConfig.routes.video}
-                className="group relative inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#d2ccc3] transition-colors hover:text-[#E8E5E0]"
-              >
-                <span className="nav-shutter nav-glitch-word" data-text="Watch Video">Watch Video</span>
-                <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-[#C45A3C] transition-all duration-300 group-hover:w-full" />
-              </Link>
-              <Link
-                href={siteConfig.routes.feed}
-                className="group relative inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#d2ccc3] transition-colors hover:text-[#E8E5E0]"
-              >
-                <span className="nav-shutter nav-glitch-word" data-text="Open Feed">Open Feed</span>
-                <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-[#C45A3C] transition-all duration-300 group-hover:w-full" />
-              </Link>
+            <h3 className="font-display mt-2 mb-2 text-4xl">{siteConfig.name}</h3>
+            <p className="mb-4 text-[#d2ccc3]">Founded by {siteConfig.founderName}</p>
+            <p className="mb-4 max-w-2xl text-[#E8E5E0]">The Margin is where the real notes are.</p>
+            <div className="mb-4 max-w-2xl space-y-1 text-[#d2ccc3]">
+              <p>Not the headline.</p>
+              <p>Not the consensus.</p>
+              <p>The part people skip,</p>
+              <p>but the part that actually matters.</p>
             </div>
+            <div className="mb-4 max-w-2xl space-y-1 text-[#d2ccc3]">
+              <p>In investing, that&apos;s where alpha lives.</p>
+              <p>In writing, it&apos;s where the thinking happens.</p>
+              <p>In strategy, it&apos;s where you find what others miss.</p>
+            </div>
+            <p className="mb-3 max-w-2xl text-[#d2ccc3]">This is a media company focused on:</p>
+            <ul className="mb-4 max-w-2xl space-y-2 text-[#d2ccc3]">
+              {focusAreas.map((area) => (
+                <li key={area} className="flex items-start gap-3">
+                  <span className="mt-1 text-[#C45A3C]">•</span>
+                  <span>{area}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="max-w-2xl text-[#d2ccc3]">Across markets, technology, psychology, and history.</p>
           </div>
         </div>
       </CardContent>
